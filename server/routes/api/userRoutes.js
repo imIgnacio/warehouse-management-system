@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Create a new User
+// Create a new User. Only for Admins
 router.post('/signup', authMiddleware, async (req, res) => {
   try {
     const userData = await User.create({
