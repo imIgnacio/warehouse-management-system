@@ -16,13 +16,14 @@ module.exports = {
 
     try {
       const payload = jwt.verify(token, config.jwtSecret);
-      console.log(payload);
 
-      req.user = payload;
-      next();
+      if (payload.role === 'ROLE_ADMIN') {
+        next();
+      } else {
+        return res.status(403).json({ message: 'No authorized' });
+      }
     } catch {
-      console.log('Invalid token');
-      return res.sendStatus(400);
+      return res.status(401).json({ message: 'Invalid Token' });
     }
   },
 };
