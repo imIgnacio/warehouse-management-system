@@ -15,6 +15,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Delete users. Only for Admins
+router.delete('/:userId', authMiddleware, async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findByIdAndDelete({ _id: userId });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 // Create a new User. Only for Admins
 router.post('/signup', authMiddleware, async (req, res) => {
   try {
