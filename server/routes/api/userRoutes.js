@@ -1,6 +1,8 @@
 const User = require('../../models/User');
 const router = require('express').Router();
-const { isAdmin } = require('../../utils/auth');
+const jwt = require('jsonwebtoken');
+const { authMiddleware } = require('../../utils/auth');
+const { config } = require('../../config/config');
 
 // Get all users
 router.get('/', async (req, res) => {
@@ -14,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 // Create a new User
-router.post('/signup', isAdmin, async (req, res) => {
+router.post('/signup', authMiddleware, async (req, res) => {
   try {
     const userData = await User.create({
       first: req.body.first,
@@ -24,14 +26,7 @@ router.post('/signup', isAdmin, async (req, res) => {
       role: req.body.role,
     });
 
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.email = userData.email;
-      req.session.role = userData.role;
-      req.session.logged_in = true;
-
-      res.status(200).json({ userData, message: 'New user created!' });
-    });
+    res.status(200).json({ userData, message: 'New user created!' });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -51,16 +46,26 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    const payload = {
+      sub: userData._id,
+      role: userData.role,
+    };
+
+    const token = jwt.sign(payload, config.jwtSecret);
+
     req.session.save(() => {
       // declare session variables
-      req.session.user_id = userData._id;
       req.session.email = userData.email;
+      req.session.id = userData._id;
       req.session.role = userData.role;
+      req.session.token = token;
       req.session.logged_in = true;
 
-      res
-        .status(200)
-        .json({ user: userData, message: 'You are now logged in!' });
+      res.status(200).json({
+        user: userData,
+        token,
+        message: 'You are now logged in!',
+      });
     });
   } catch (error) {
     console.log(error);
