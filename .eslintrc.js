@@ -5,9 +5,15 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['plugin:react/recommended', 'standard', 'eslint-config-prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'standard',
+    'eslint-config-prettier',
+    'plugin:react/jsx-runtime',
+  ],
   parserOptions: {
     ecmaFeatures: {
+      js: true,
       jsx: true,
     },
     ecmaVersion: 'latest',
