@@ -1,17 +1,15 @@
 const express = require('express');
-const session = require('express-session');
 const path = require('path');
+const cors = require('cors');
 const db = require('./config/connection');
 const router = require('./routes');
 const PORT = process.env.PORT || 8080;
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  session({ secret: 'this-is-my-secret', cookie: { expires: 1000 * 60 * 60 } })
-);
 app.use(router);
 
 // if we're in production, serve client/build as static assets

@@ -5,7 +5,7 @@ const { authMiddleware } = require('../../utils/auth');
 const { config } = require('../../config/config');
 
 // Get all users
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
   try {
     const users = await User.find();
 
@@ -67,35 +67,15 @@ router.post('/login', async (req, res) => {
 
     const token = jwt.sign(payload, config.jwtSecret);
 
-    req.session.save(() => {
-      // declare session variables
-      req.session.email = userData.email;
-      req.session.id = userData._id;
-      req.session.role = userData.role;
-      req.session.token = token;
-      req.session.logged_in = true;
-
-      res
-        .status(200)
-        .header('Authorization', `Bearer ${token}`)
-        .cookie('jwt', token)
-        .json({
-          message: 'You are now logged in!',
-        });
-    });
+    res
+      .status(200)
+      .header('Authorization', `Bearer ${token}`)
+      .cookie('jwt', token)
+      .json({
+        message: 'You are now logged in!',
+      });
   } catch (error) {
     res.status(500).json(error);
-  }
-});
-
-// Log out
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(200).end();
-    });
-  } else {
-    res.status(400).end();
   }
 });
 
