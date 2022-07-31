@@ -2,10 +2,12 @@ import React from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Container, Paper, Box, Typography, Input, Button } from '@mui/material';
 import './styles.css';
 
 function Login() {
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -18,10 +20,18 @@ function Login() {
     }),
     onSubmit: (formData) => {
       axios.post('/api/user/login', {
-        email: formik.values.email,
-        password: formik.values.password,
+        email: formData.email,
+        password: formData.password,
+      },
+      { withCredentials: true })
+      .then(response => {
+        localStorage.setItem('jwt', JSON.stringify({
+          token: response.headers.authorization.split(' ')[1],
+          tokenType: 'Bearer',
+        }))
+        console.log(response);
+        return navigate('/');
       })
-      .then(response => console.log(response))
     }
   });
 

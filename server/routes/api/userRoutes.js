@@ -48,7 +48,10 @@ router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ email: req.body.email });
 
-    if (!userData) res.status(400).json({ message: 'Incorrect credentials' });
+    if (!userData) {
+      res.status(400).json({ message: 'Incorrect credentials' });
+      return;
+    }
 
     const validPassword = await userData.isCorrectPassword(req.body.password);
 
@@ -72,9 +75,7 @@ router.post('/login', async (req, res) => {
       req.session.token = token;
       req.session.logged_in = true;
 
-      res.status(200).json({
-        user: userData,
-        token,
+      res.status(200).header('Authorization', `Bearer ${token}`).json({
         message: 'You are now logged in!',
       });
     });
