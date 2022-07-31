@@ -25,11 +25,6 @@ function Login() {
       },
       { withCredentials: true })
       .then(response => {
-        localStorage.setItem('jwt', JSON.stringify({
-          token: response.headers.authorization.split(' ')[1],
-          tokenType: 'Bearer',
-        }))
-        console.log(response);
         return navigate('/');
       })
     }

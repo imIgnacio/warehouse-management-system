@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import useLocalStorage from '../hooks/useLocalStorage';
+import Cookies from 'js-cookie';
 
 function WithAuth({children}) {
   return (
-    useLocalStorage('jwt') ? children : <Navigate to='/login' component />
+    Cookies.get('jwt') !== undefined ? children : <Navigate to='/login' component />
   )
 }
 

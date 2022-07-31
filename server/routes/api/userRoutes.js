@@ -75,12 +75,15 @@ router.post('/login', async (req, res) => {
       req.session.token = token;
       req.session.logged_in = true;
 
-      res.status(200).header('Authorization', `Bearer ${token}`).json({
-        message: 'You are now logged in!',
-      });
+      res
+        .status(200)
+        .header('Authorization', `Bearer ${token}`)
+        .cookie('jwt', token)
+        .json({
+          message: 'You are now logged in!',
+        });
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json(error);
   }
 });
