@@ -24,7 +24,8 @@ db.once('open', async () => {
     {
       name: 'Zootec 20Kg',
       description:
-        'Laborum magna amet ipsum laboris exercitation irure. Reprehenderit dolore laboris dolor ipsum duis in esse. Amet eu culpa laboris qui dolore sunt. Cupidatat consectetur consequat velit id pariatur ex. Fugiat excepteur ut excepteur et excepteur exercitation incididunt laborum cupidatat. Quis labore sunt consectetur reprehenderit dolor veniam exercitation in fugiat cupidatat commodo exercitation duis ipsum. Commodo amet aliquip deserunt nostrud qui Lorem magna consequat magna.',
+        'Mollit enim sit voluptate cupidatat occaecat proident ipsum voluptate qui sunt.',
+      stock: 150,
       buyPrice: 7990,
       sellPrice: 15990,
       historicalPrice: [
@@ -45,8 +46,8 @@ db.once('open', async () => {
     },
     {
       name: 'Magnum 20Kg',
-      description:
-        'Laborum magna amet ipsum laboris exercitation irure. Reprehenderit dolore laboris dolor ipsum duis in esse. Amet eu culpa laboris qui dolore sunt. Cupidatat consectetur consequat velit id pariatur ex. Fugiat excepteur ut excepteur et excepteur exercitation incididunt laborum cupidatat. Quis labore sunt consectetur reprehenderit dolor veniam exercitation in fugiat cupidatat commodo exercitation duis ipsum. Commodo amet aliquip deserunt nostrud qui Lorem magna consequat magna.',
+      description: 'Non ipsum non quis exercitation minim eu.',
+      stock: 100,
       buyPrice: 7990,
       sellPrice: 15990,
       historicalPrice: [
@@ -67,8 +68,8 @@ db.once('open', async () => {
     },
     {
       name: 'Pet Matte 16Kg',
-      description:
-        'Laborum magna amet ipsum laboris exercitation irure. Reprehenderit dolore laboris dolor ipsum duis in esse. Amet eu culpa laboris qui dolore sunt. Cupidatat consectetur consequat velit id pariatur ex. Fugiat excepteur ut excepteur et excepteur exercitation incididunt laborum cupidatat. Quis labore sunt consectetur reprehenderit dolor veniam exercitation in fugiat cupidatat commodo exercitation duis ipsum. Commodo amet aliquip deserunt nostrud qui Lorem magna consequat magna.',
+      description: 'Ullamco do nulla incididunt do nisi aute nisi culpa.',
+      stock: 100,
       buyPrice: 9990,
       sellPrice: 18990,
       historicalPrice: [
@@ -89,8 +90,8 @@ db.once('open', async () => {
     },
     {
       name: 'Safari 20Kg',
-      description:
-        'Laborum magna amet ipsum laboris exercitation irure. Reprehenderit dolore laboris dolor ipsum duis in esse. Amet eu culpa laboris qui dolore sunt. Cupidatat consectetur consequat velit id pariatur ex. Fugiat excepteur ut excepteur et excepteur exercitation incididunt laborum cupidatat. Quis labore sunt consectetur reprehenderit dolor veniam exercitation in fugiat cupidatat commodo exercitation duis ipsum. Commodo amet aliquip deserunt nostrud qui Lorem magna consequat magna.',
+      description: 'Tempor quis exercitation incididunt et.',
+      stock: 100,
       buyPrice: 10990,
       sellPrice: 23990,
       historicalPrice: [
@@ -111,6 +112,12 @@ db.once('open', async () => {
     },
   ]);
   console.log('Products Created');
+
+  await Category.findOneAndUpdate(
+    { name: 'Arenas Sanitarias' },
+    { products: [...products] }
+  );
+  console.log('Categories and Products linked');
 
   process.exit();
 });
