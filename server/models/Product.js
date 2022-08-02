@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    maxLength: 256,
+    maxLength: 512,
   },
   image: {
     type: String,
@@ -22,6 +22,9 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 1,
+  },
+  historicalPrice: {
+    type: [{ date: Date, price: Number }],
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,

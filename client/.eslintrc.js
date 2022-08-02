@@ -1,28 +1,26 @@
 module.exports = {
   env: {
     browser: true,
-    commonjs: true,
     es2021: true,
-    node: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'standard',
-    'eslint-config-prettier',
-    'plugin:react/jsx-runtime',
-  ],
+  extends: ['plugin:react/recommended', 'standard', 'eslint-config-prettier'],
   parserOptions: {
     ecmaFeatures: {
-      js: true,
       jsx: true,
     },
     ecmaVersion: 'latest',
+    sourceType: 'module',
   },
   plugins: ['react', 'prettier'],
   rules: {
+    'no-unused-vars': 'warn',
     semi: ['error', 'always'],
     quotes: ['error', 'single'],
-    'no-unused-vars': 'error',
-    // 'prettier/prettier': 'error',
+    'react/prop-types': ['off'],
+    'prettier/prettier': [
+      'error',
+      { endOfLine: 'auto' },
+      { usePrettierrc: true },
+    ],
   },
 };

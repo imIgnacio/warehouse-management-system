@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import WithAuth from './hoc/withAuth';
 import Dashboard from './pages/Dashboard';
@@ -9,14 +10,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path='/'
           element={
             <WithAuth>
               <Dashboard />
             </WithAuth>
           }
         />
-        <Route path="/login" element={<Login />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

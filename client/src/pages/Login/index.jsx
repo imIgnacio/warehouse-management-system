@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Container, Paper, Box, Typography, Input, Button } from '@mui/material';
+import {
+  Container,
+  Paper,
+  Box,
+  Typography,
+  Input,
+  Button,
+} from '@mui/material';
 import './styles.css';
 
 function Login() {
@@ -18,50 +25,71 @@ function Login() {
       email: Yup.string().email().required(),
       password: Yup.string().required(),
     }),
-    onSubmit: (formData) => {
-      axios.post('/api/user/login', {
-        email: formData.email,
-        password: formData.password,
-      },
-      { withCredentials: true })
-      .then(response => {
-        return navigate('/');
-      })
-    }
+    onSubmit: formData => {
+      axios
+        .post(
+          '/api/user/login',
+          {
+            email: formData.email,
+            password: formData.password,
+          },
+          { withCredentials: true }
+        )
+        .then(response => {
+          return navigate('/');
+        });
+    },
   });
 
   return (
-    <Container maxWidth={false} sx={{display: 'flex', justifyContent: 'center', padding: '0 8px'}}>
+    <Container
+      maxWidth={false}
+      sx={{ display: 'flex', justifyContent: 'center', padding: '0 8px' }}
+    >
       <Box mt={8}>
-        <Paper elevation={2} sx={{width: '480px', height: '580px'}}>
+        <Paper elevation={2} sx={{ width: '480px', height: '580px' }}>
           <form className='form' onSubmit={formik.handleSubmit}>
             <Typography variant='h3'>Login</Typography>
             <Box mt={4} />
             <Input
-            fullWidth placeholder='Email'
-            type='text'
-            name='email'
-            onChange={formik.handleChange}
-            // error={formik.errors.email}
-            value={formik.values.email}
+              fullWidth
+              placeholder='Email'
+              type='text'
+              name='email'
+              onChange={formik.handleChange}
+              // error={formik.errors.email}
+              value={formik.values.email}
             />
             <Box height={18} />
             <Input
-            fullWidth placeholder='Password'
-            type='password' name='password'
-            onChange={formik.handleChange}
-            // error={formik.errors.password}
-            value={formik.values.password} />
+              fullWidth
+              placeholder='Password'
+              type='password'
+              name='password'
+              onChange={formik.handleChange}
+              // error={formik.errors.password}
+              value={formik.values.password}
+            />
             <Box mt={4} />
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
-              <Button size='small' color='error'>Forgot Password</Button>
-              <Button type='submit' size='large' variant='contained'>Log In</Button>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+              }}
+            >
+              <Button size='small' color='error'>
+                Forgot Password
+              </Button>
+              <Button type='submit' size='large' variant='contained'>
+                Log In
+              </Button>
             </Box>
           </form>
         </Paper>
       </Box>
     </Container>
-  )
+  );
 }
 
-export default Login
+export default Login;
