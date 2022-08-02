@@ -3,8 +3,8 @@ const userRoutes = require('./userRoutes');
 const productRoutes = require('./productRoutes');
 const categoryRoutes = require('./categoryRoutes');
 
-router.use('/user', userRoutes);
-router.use('/product', productRoutes);
-router.use('/category', categoryRoutes);
+router.use('/users', userRoutes);
+router.use('/products', productRoutes);
+router.use('/categories', categoryRoutes);
 
 module.exports = router;

@@ -10,7 +10,7 @@ function Dashboard() {
 
   React.useEffect(() => {
     axios
-      .get('/api/product', {
+      .get('/api/products', {
         headers: {
           Authorization: Cookies.get('jwt'),
         },

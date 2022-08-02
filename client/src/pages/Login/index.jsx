@@ -28,7 +28,7 @@ function Login() {
     onSubmit: formData => {
       axios
         .post(
-          '/api/user/login',
+          '/api/users/login',
           {
             email: formData.email,
             password: formData.password,
