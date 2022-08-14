@@ -9,10 +9,10 @@ function Dashboard() {
     <>
       <Navbar />
       <Grid container spacing={2} sx={{ padding: 2 }}>
-        <Grid item xs={8}>
+        <Grid item xs={6}>
           <HistoricalPriceChart />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <StockChart />
         </Grid>
       </Grid>
