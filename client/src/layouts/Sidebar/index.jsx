@@ -1,19 +1,46 @@
 import React from 'react';
 import {
   Drawer,
-  Toolbar,
-  Divider,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
+  Tooltip,
 } from '@mui/material';
 import { useNavigate } from 'react-router';
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
-import SearchIcon from '@mui/icons-material/Search';
-import HomeIcon from '@mui/icons-material/Home';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+const sidebarItems = [
+  {
+    path: '/',
+    tooltip: 'Dashboard',
+    icon: HomeIcon,
+  },
+  {
+    path: '/products',
+    tooltip: 'See Products',
+    icon: SearchIcon,
+  },
+  {
+    path: '/addProducts',
+    tooltip: 'Create Products',
+    icon: AddIcon,
+  },
+  {
+    path: '/editProducts',
+    tooltip: 'Edit Products',
+    icon: EditIcon,
+  },
+  {
+    path: '/deleteProducts',
+    tooltip: 'Delete Products',
+    icon: DeleteIcon,
+  },
+];
 
 function Sidebar() {
   const drawerWidth = 80;
@@ -36,83 +63,24 @@ function Sidebar() {
       variant='permanent'
       anchor='left'
     >
-      <Toolbar />
-      <Divider />
       <List>
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate('/')}>
-            <ListItemIcon
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <HomeIcon />
-            </ListItemIcon>
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate('/products')}>
-            <ListItemIcon
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <SearchIcon />
-            </ListItemIcon>
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate('/addProduct')}>
-            <ListItemIcon
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <AddIcon />
-            </ListItemIcon>
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate('/editProduct')}>
-            <ListItemIcon
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <EditIcon />
-            </ListItemIcon>
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate('/deleteProduct')}>
-            <ListItemIcon
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <DeleteIcon />
-            </ListItemIcon>
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate('/addProduct')}>
-            <ListItemIcon
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <AddIcon />
-            </ListItemIcon>
-          </ListItemButton>
-        </ListItem>
+        {sidebarItems.map((element, index) => (
+          <ListItem key={index} disablePadding>
+            <Tooltip placement='right' arrow title={element.tooltip}>
+              <ListItemButton onClick={() => navigate(`${element.path}`)}>
+                <ListItemIcon
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {React.createElement(element.icon)}
+                </ListItemIcon>
+              </ListItemButton>
+            </Tooltip>
+          </ListItem>
+        ))}
       </List>
-      <Divider />
     </Drawer>
   );
 }
