@@ -67,7 +67,10 @@ function Sidebar() {
         {sidebarItems.map((element, index) => (
           <ListItem key={index} disablePadding>
             <Tooltip placement='right' arrow title={element.tooltip}>
-              <ListItemButton onClick={() => navigate(`${element.path}`)}>
+              <ListItemButton
+                sx={{ paddingRight: 1 }}
+                onClick={() => navigate(`${element.path}`)}
+              >
                 <ListItemIcon
                   sx={{
                     display: 'flex',
