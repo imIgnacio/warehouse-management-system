@@ -1,6 +1,7 @@
+import React from 'react';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import UserIcon from '../UserIcon';
 
 function Navbar() {
   return (
@@ -15,10 +16,12 @@ function Navbar() {
       }}
     >
       <Box sx={{ margin: '16px' }}>
-        <Typography>Dashboard</Typography>
+        <Typography variant='h6' sx={{ fontWeight: 700 }}>
+          Dashboard
+        </Typography>
       </Box>
       <Box sx={{ margin: '16px' }}>
-        <Typography>User</Typography>
+        <UserIcon />
       </Box>
     </Box>
   );
