@@ -15,12 +15,12 @@ function Navbar() {
         alignItems: 'center',
       }}
     >
-      <Box sx={{ margin: '16px' }}>
+      <Box sx={{ padding: 2 }}>
         <Typography variant='h6' sx={{ fontWeight: 700 }}>
           Dashboard
         </Typography>
       </Box>
-      <Box sx={{ margin: '16px' }}>
+      <Box sx={{ padding: 2 }}>
         <UserIcon />
       </Box>
     </Box>
