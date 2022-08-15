@@ -48,10 +48,10 @@ function Products() {
   });
 
   React.useEffect(() => {
-    axiosInstance.get('/categories').then(res => setCategories(res.data));
+    axiosInstance
+      .get('/categories')
+      .then(res => setCategories(() => [...res.data.categories]));
   }, []);
-
-  console.log(categories);
 
   return (
     <>
@@ -115,7 +115,7 @@ function Products() {
               <Box height={18} />
               <Autocomplete
                 options={categories}
-                getOptionLabel={category => category.name}
+                getOptionLabel={option => option.name}
                 renderOption={(props, option) => (
                   <Box
                     component='li'
