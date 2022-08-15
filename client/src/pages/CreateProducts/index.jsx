@@ -16,6 +16,7 @@ import './styles.css';
 
 function Products() {
   const [categories, setCategories] = React.useState([]);
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -23,7 +24,6 @@ function Products() {
       buyPrice: '',
       sellPrice: '',
       description: '',
-      category: '',
     },
     validationSchema: Yup.object({
       name: Yup.string().required(),
@@ -34,16 +34,17 @@ function Products() {
       category: Yup.string().required(),
     }),
     onSubmit: formData => {
-      axiosInstance
-        .post(
-          '/api/users/login',
-          {
-            email: formData.email,
-            password: formData.password,
-          },
-          { withCredentials: true }
-        )
-        .then(response => console.log(response));
+      console.log(formData);
+      // axiosInstance
+      //   .post(
+      //     '/api/users/login',
+      //     {
+      //       email: formData.email,
+      //       password: formData.password,
+      //     },
+      //     { withCredentials: true }
+      //   )
+      //   .then(response => console.log(response));
     },
   });
 
@@ -116,18 +117,12 @@ function Products() {
               <Autocomplete
                 options={categories}
                 getOptionLabel={option => option.name}
-                renderOption={(props, option) => (
-                  <Box
-                    component='li'
-                    sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
-                    {...props}
-                  >
-                    {option.name}
-                  </Box>
-                )}
                 renderInput={params => (
                   <TextField {...params} label='Category' />
                 )}
+                onChange={(e, value) =>
+                  formik.setFieldValue('category', value._id)
+                }
               />
               <Box mt={4} />
               <Box
