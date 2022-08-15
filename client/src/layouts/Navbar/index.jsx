@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import UserIcon from '../../components/UserIcon';
 
-function Navbar() {
+function Navbar(props) {
   return (
     <Box
       sx={{
@@ -17,7 +17,7 @@ function Navbar() {
     >
       <Box sx={{ padding: 2 }}>
         <Typography variant='h6' sx={{ fontWeight: 700 }}>
-          Dashboard
+          {props.title}
         </Typography>
       </Box>
       <Box sx={{ padding: 2 }}>

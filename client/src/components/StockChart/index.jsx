@@ -9,7 +9,7 @@ function StockChart() {
 
   React.useEffect(() => {
     axiosInstance
-      .get('/api/products')
+      .get('/products')
       .then(res => setData(() => [...data, res.data]));
   }, []);
 
