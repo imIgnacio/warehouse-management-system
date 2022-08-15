@@ -8,7 +8,7 @@ router.get('/', authMiddleware, async (req, res) => {
   try {
     const categories = await Category.find();
 
-    res.status(200).json(categories);
+    res.status(200).json({ total: categories.length, categories });
   } catch (err) {
     res.status(500).json(err);
   }
