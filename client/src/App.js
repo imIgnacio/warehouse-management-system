@@ -6,6 +6,7 @@ import WithAuth from './hoc/withAuth';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Products from './pages/Products';
+import CreateProducts from './pages/CreateProducts';
 
 function App() {
   return (
@@ -25,6 +26,14 @@ function App() {
             element={
               <WithAuth>
                 <Products />
+              </WithAuth>
+            }
+          />
+          <Route
+            path='/addProducts'
+            element={
+              <WithAuth>
+                <CreateProducts />
               </WithAuth>
             }
           />
