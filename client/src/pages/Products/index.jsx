@@ -6,12 +6,11 @@ import {
   TableBody,
   TableCell,
   TableRow,
-  Skeleton,
-  Paper,
   Grid,
 } from '@mui/material';
 import axiosInstance from '../../api';
 import Navbar from '../../layouts/Navbar';
+import ListLoading from '../../components/ListLoading';
 
 function Products() {
   const [data, setData] = React.useState([]);
@@ -27,9 +26,9 @@ function Products() {
       <Navbar title='Products' />
       <Grid container spacing={2} sx={{ padding: 2 }}>
         <Grid item xs={12}>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 1000 }}>
-              <TableHead>
+          <TableContainer>
+            <Table sx={{ minWidth: 1000, overflow: 'scroll' }}>
+              <TableHead sx={{ backgroundColor: '#F0F0FA' }}>
                 <TableRow>
                   <TableCell align='left'>Product</TableCell>
                   <TableCell align='left'>Stock</TableCell>
@@ -51,7 +50,7 @@ function Products() {
                   ))}
                 </TableBody>
               ) : (
-                <Skeleton variant='rounded' animation='wave' height={20} />
+                <ListLoading colSpan={5} />
               )}
             </Table>
           </TableContainer>
