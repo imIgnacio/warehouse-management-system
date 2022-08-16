@@ -34,17 +34,9 @@ function CreateProducts() {
       category: Yup.string().required(),
     }),
     onSubmit: formData => {
-      console.log(formData);
-      // axiosInstance
-      //   .post(
-      //     '/api/users/login',
-      //     {
-      //       email: formData.email,
-      //       password: formData.password,
-      //     },
-      //     { withCredentials: true }
-      //   )
-      //   .then(response => console.log(response));
+      axiosInstance
+        .post('/products', formData)
+        .then(response => console.log(response));
     },
   });
 
