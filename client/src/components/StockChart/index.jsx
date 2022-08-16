@@ -18,10 +18,10 @@ function StockChart() {
       <VictoryChart
         domainPadding={{ x: 20 }}
         animate={{ duration: 500 }}
-        width={data[0].total * 90}
+        width={data[0].total < 6 ? data[0].total * 90 : 540}
       >
         <VictoryBar
-          style={{ data: { fill: '#583AE3', width: 20, fontSize: 12 } }}
+          style={{ data: { fill: '#583AE3', width: 20 } }}
           data={data[0].products.map((element, index) => ({
             x: element.name.split(' ').join(''),
             y: element.stock,
@@ -31,7 +31,10 @@ function StockChart() {
         <VictoryAxis
           dependentAxis
           label='Stock'
-          style={{ axisLabel: { fontSize: 15, padding: 30 } }}
+          style={{
+            axisLabel: { fontSize: 15, padding: 30 },
+            tickLabels: { fontSize: 12 },
+          }}
         />
       </VictoryChart>
     </GridPaper>
