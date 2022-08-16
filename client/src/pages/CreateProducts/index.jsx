@@ -89,8 +89,8 @@ function CreateProducts() {
                 type='text'
                 name='buyPrice'
                 onChange={formik.handleChange}
-                // error={formik.errors.password}
                 value={formik.values.buyPrice}
+                // error={formik.errors.buyPrice}
               />
               <Box height={18} />
               <Input
@@ -99,8 +99,8 @@ function CreateProducts() {
                 type='text'
                 name='sellPrice'
                 onChange={formik.handleChange}
-                // error={formik.errors.password}
                 value={formik.values.sellPrice}
+                // error={formik.errors.sellPrice}
               />
               <Box height={18} />
               <Input
@@ -110,15 +110,15 @@ function CreateProducts() {
                 type='text'
                 name='description'
                 onChange={formik.handleChange}
-                // error={formik.errors.password}
                 value={formik.values.description}
+                // error={formik.errors.description}
               />
               <Box height={18} />
               <Autocomplete
                 options={categories}
                 getOptionLabel={option => option.name}
                 renderInput={params => (
-                  <TextField {...params} label='Category' />
+                  <TextField {...params} variant='standard' label='Category' />
                 )}
                 onChange={(e, value) =>
                   formik.setFieldValue('category', value._id)
