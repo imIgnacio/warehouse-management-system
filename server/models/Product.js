@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema({
     min: 1,
   },
   historicalPrice: {
-    type: [{ date: Date, price: Number }],
+    type: [{ _id: false, date: Date, price: Number }],
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,

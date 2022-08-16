@@ -22,7 +22,10 @@ router.post('/', authMiddleware, async (req, res) => {
       return res.status(400).json({ message: 'No Information Provided' });
     }
 
-    const product = await Product.create(req.body);
+    const product = await Product.create({
+      ...req.body,
+      historicalPrice: [{ date: new Date(), price: req.body.buyPrice }],
+    });
 
     return res.status(200).json({ product });
   } catch (err) {
