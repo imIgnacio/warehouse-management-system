@@ -14,7 +14,7 @@ import axiosInstance from '../../api';
 import Navbar from '../../layouts/Navbar';
 import './styles.css';
 
-function Products() {
+function CreateProducts() {
   const [categories, setCategories] = React.useState([]);
 
   const formik = useFormik({
@@ -146,4 +146,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default CreateProducts;

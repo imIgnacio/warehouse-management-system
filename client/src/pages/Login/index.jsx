@@ -48,7 +48,7 @@ function Login() {
     >
       <Box mt={8}>
         <Paper elevation={2} sx={{ width: '480px', height: '580px' }}>
-          <form className='form' onSubmit={formik.handleSubmit}>
+          <form className='login-form' onSubmit={formik.handleSubmit}>
             <Typography variant='h3'>Login</Typography>
             <Box mt={4} />
             <Input

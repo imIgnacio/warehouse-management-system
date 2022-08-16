@@ -10,4 +10,12 @@ const axiosInstance = axios.create({
   },
 });
 
+axiosInstance.interceptors.request.use(async req => {
+  const token = await Cookies.get('jwt');
+
+  if (token) req.headers.Authorization = `Bearer ${token}`;
+
+  return req;
+});
+
 export default axiosInstance;
