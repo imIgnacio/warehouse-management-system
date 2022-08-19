@@ -45,6 +45,11 @@ const sidebarItems = [
 function Sidebar() {
   const drawerWidth = 80;
   const navigate = useNavigate();
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
 
   return (
     <Drawer
@@ -69,7 +74,11 @@ function Sidebar() {
             <Tooltip placement='right' arrow title={element.tooltip}>
               <ListItemButton
                 sx={{ paddingRight: 1 }}
-                onClick={() => navigate(`${element.path}`)}
+                selected={selectedIndex === index}
+                onClick={() => {
+                  handleListItemClick(event, index);
+                  navigate(`${element.path}`);
+                }}
               >
                 <ListItemIcon
                   sx={{
