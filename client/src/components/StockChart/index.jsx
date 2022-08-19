@@ -9,7 +9,11 @@ function StockChart() {
 
   React.useEffect(() => {
     axiosInstance
-      .get('/products')
+      .get('/products', {
+        params: {
+          limit: 6,
+        },
+      })
       .then(res => setData(() => [...data, res.data]));
   }, []);
 

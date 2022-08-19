@@ -1,6 +1,8 @@
 import Dashboard from '../pages/Dashboard';
 import Products from '../pages/Products';
 import CreateProducts from '../pages/CreateProducts';
+import EditProducts from '../pages/EditProducts';
+import DeleteProducts from '../pages/DeleteProducts';
 
 const routes = [
   {
@@ -14,6 +16,14 @@ const routes = [
   {
     path: '/addProducts',
     Component: CreateProducts,
+  },
+  {
+    path: '/editProducts',
+    Component: EditProducts,
+  },
+  {
+    path: '/deleteProducts',
+    Component: DeleteProducts,
   },
 ];
 

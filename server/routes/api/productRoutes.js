@@ -1,13 +1,16 @@
 const Product = require('../../models/Product');
 const router = require('express').Router();
-const jwt = require('jsonwebtoken');
 const { authMiddleware } = require('../../utils/auth');
-const { config } = require('../../config/config');
 
 // Get all Products
 router.get('/', authMiddleware, async (req, res) => {
   try {
-    const products = await Product.find();
+    const { limit } = req.query;
+    let products;
+
+    limit
+      ? (products = await Product.find().limit(limit))
+      : (products = await Product.find());
 
     return res.status(200).json({ total: products.length, products });
   } catch (err) {
