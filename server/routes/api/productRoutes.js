@@ -51,6 +51,37 @@ router.get('/:productId', authMiddleware, async (req, res) => {
   }
 });
 
+// Update one product by Id
+router.put('/:productId', authMiddleware, async (req, res) => {
+  try {
+    const { name, description, image, stock, buyPrice, sellPrice, category } =
+      req.body;
+    const product = await Product.findById({ _id: req.params.productId });
+
+    if (!product) return res.status(400).json({ message: 'No Product Found' });
+
+    product.buyPrice !== buyPrice
+      ? (product.historicalPrice = [
+          ...product.historicalPrice,
+          { date: new Date(), price: buyPrice },
+        ])
+      : (product.historicalPrice = [...product.historicalPrice]);
+
+    product.name = name;
+    product.description = description;
+    product.stock = stock;
+    product.buyPrice = buyPrice;
+    product.sellPrice = sellPrice;
+    product.category = category;
+
+    product.save();
+
+    return res.status(200).json(product);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 // Delete one Product by Id
 router.delete('/:productId', authMiddleware, async (req, res) => {
   try {

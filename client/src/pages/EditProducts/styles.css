@@ -1,0 +1,8 @@
+.edit-form {
+  padding: 24px 68px 70px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 515;
+  margin-bottom: 40;
+}
