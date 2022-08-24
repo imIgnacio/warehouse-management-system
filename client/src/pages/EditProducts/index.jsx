@@ -36,6 +36,7 @@ function EditProducts() {
       buyPrice: '',
       sellPrice: '',
       description: '',
+      _id: '',
     },
     validationSchema: Yup.object({
       name: Yup.string().required(),
@@ -47,7 +48,7 @@ function EditProducts() {
     }),
     onSubmit: formData => {
       axiosInstance
-        .put('/products', formData)
+        .put(`/products/${formData._id}`, formData)
         .then(response => console.log(response));
     },
   });
@@ -60,6 +61,7 @@ function EditProducts() {
         buyPrice: selectedProduct?.buyPrice ?? '',
         sellPrice: selectedProduct?.sellPrice ?? '',
         description: selectedProduct?.description ?? '',
+        _id: selectedProduct?._id ?? '',
       },
     });
   }, [selectedProduct]);
@@ -79,7 +81,7 @@ function EditProducts() {
                 )}
                 onChange={(e, value) => {
                   setSelectedProduct(value);
-                  formik.setFieldValue('product', value._id);
+                  formik.setFieldValue('product', value?._id ?? '');
                 }}
               />
               <Box mt={4} />
@@ -143,8 +145,9 @@ function EditProducts() {
                   <TextField {...params} variant='standard' label='Category' />
                 )}
                 onChange={(e, value) =>
-                  formik.setFieldValue('category', value._id)
+                  formik.setFieldValue('category', value?._id ?? '')
                 }
+                value={formik.va}
               />
               <Box mt={4} />
               <Box

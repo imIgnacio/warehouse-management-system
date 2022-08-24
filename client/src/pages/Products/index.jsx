@@ -21,8 +21,6 @@ function Products() {
       .then(res => setData(() => [...data, res.data]));
   }, []);
 
-  console.log(data);
-
   return (
     <>
       <Navbar title='Products' />
