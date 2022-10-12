@@ -3,6 +3,7 @@ import Products from '../pages/Products';
 import CreateProducts from '../pages/CreateProducts';
 import EditProducts from '../pages/EditProducts';
 import DeleteProducts from '../pages/DeleteProducts';
+import FinanceTable from '../pages/FinanceTable';
 
 const routes = [
   {
@@ -24,6 +25,10 @@ const routes = [
   {
     path: '/deleteProducts',
     Component: DeleteProducts,
+  },
+  {
+    path: '/financeTable',
+    Component: FinanceTable,
   },
 ];
 

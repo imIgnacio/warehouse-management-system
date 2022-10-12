@@ -9,11 +9,7 @@ function StockChart() {
 
   React.useEffect(() => {
     axiosInstance
-      .get('/products', {
-        params: {
-          limit: 6,
-        },
-      })
+      .get('/products/stock')
       .then(res => setData(() => [...data, res.data]));
   }, []);
 
@@ -22,12 +18,12 @@ function StockChart() {
       <VictoryChart
         domainPadding={{ x: 20 }}
         animate={{ duration: 500 }}
-        width={data[0].total < 6 ? data[0].total * 90 : 540}
+        width={data[0].total < 6 ? data[0].total * 95 : 570}
       >
         <VictoryBar
           style={{ data: { fill: '#583AE3', width: 20 } }}
           data={data[0].products.map((element, index) => ({
-            x: element.name.split(' ').join(''),
+            x: element.name,
             y: element.stock,
           }))}
         />

@@ -13,6 +13,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 
 const sidebarItems = [
   {
@@ -39,6 +40,11 @@ const sidebarItems = [
     path: '/deleteProducts',
     tooltip: 'Delete Products',
     icon: DeleteIcon,
+  },
+  {
+    path: '/financeTable',
+    tooltip: 'Finance Table',
+    icon: AnalyticsIcon,
   },
 ];
 

@@ -5,12 +5,18 @@ const { authMiddleware } = require('../../utils/auth');
 // Get all Products
 router.get('/', authMiddleware, async (req, res) => {
   try {
-    const { limit } = req.query;
-    let products;
+    const products = await Product.find();
 
-    limit
-      ? (products = await Product.find().limit(limit))
-      : (products = await Product.find());
+    return res.status(200).json({ total: products.length, products });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
+// Get stock
+router.get('/stock', authMiddleware, async (req, res) => {
+  try {
+    const products = await Product.find().limit(6).sort({ stock: 1 });
 
     return res.status(200).json({ total: products.length, products });
   } catch (err) {
