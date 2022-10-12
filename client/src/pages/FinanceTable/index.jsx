@@ -1,5 +1,5 @@
 import React from 'react';
-// import moment from 'moment';
+import moment from 'moment';
 import {
   TableContainer,
   Table,
@@ -8,11 +8,14 @@ import {
   TableCell,
   TableRow,
   Input,
+  TextField,
 } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Navbar from '../../layouts/Navbar';
 
 function FinanceTable() {
   const [inputValue, setInputValue] = React.useState('');
+  const [value, setValue] = React.useState(moment());
 
   function handleInputChange(event) {
     setInputValue(event.target.value);
@@ -21,6 +24,17 @@ function FinanceTable() {
   return (
     <>
       <Navbar title='Finance Table' />
+      <DatePicker
+        label='Basic example'
+        views={['month', 'year']}
+        minDate={moment().subtract(2, 'year')}
+        value={value}
+        onChange={newValue => {
+          setValue(newValue);
+        }}
+        renderInput={params => <TextField {...params} />}
+      />
+      <div>{value.format('MMM YYYY')}</div>
       <TableContainer>
         <Table>
           <TableHead>
@@ -36,9 +50,6 @@ function FinanceTable() {
           <TableBody>
             <TableRow>
               <TableCell>{Number(inputValue) + 100}</TableCell>
-              <TableCell>{Number(inputValue) + 200}</TableCell>
-              <TableCell>{Number(inputValue) + 300}</TableCell>
-              {/* <TableCell>{moment().week()}</TableCell> */}
             </TableRow>
           </TableBody>
         </Table>
