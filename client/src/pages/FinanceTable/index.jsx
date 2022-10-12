@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment';
+// import moment from 'moment';
 import {
   TableContainer,
   Table,
@@ -36,7 +36,9 @@ function FinanceTable() {
           <TableBody>
             <TableRow>
               <TableCell>{Number(inputValue) + 100}</TableCell>
-              <TableCell>{moment().week()}</TableCell>
+              <TableCell>{Number(inputValue) + 200}</TableCell>
+              <TableCell>{Number(inputValue) + 300}</TableCell>
+              {/* <TableCell>{moment().week()}</TableCell> */}
             </TableRow>
           </TableBody>
         </Table>
