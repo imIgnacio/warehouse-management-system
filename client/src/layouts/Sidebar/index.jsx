@@ -14,6 +14,7 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const sidebarItems = [
   {
@@ -40,6 +41,11 @@ const sidebarItems = [
     path: '/deleteProducts',
     tooltip: 'Delete Products',
     icon: DeleteIcon,
+  },
+  {
+    path: '/newSale',
+    tooltip: 'New Sale',
+    icon: AttachMoneyIcon,
   },
   {
     path: '/financeTable',
