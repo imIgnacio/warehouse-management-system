@@ -14,7 +14,7 @@ function StockChart() {
   }, []);
 
   return data.length > 0 ? (
-    <GridPaper>
+    <GridPaper title='Stock Chart'>
       <VictoryChart
         domainPadding={{ x: 20 }}
         animate={{ duration: 500 }}

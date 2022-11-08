@@ -55,7 +55,11 @@ function NewSale() {
   return (
     <>
       <Navbar title='New Sale' />
-      <Grid container spacing={2} sx={{ padding: 2 }}>
+      <Grid
+        container
+        spacing={2}
+        sx={{ padding: 2, display: 'flex', justifyContent: 'space-around' }}
+      >
         <Grid item xs={4}>
           {products.length > 0 ? (
             <form id='form' onSubmit={formik.handleSubmit}>
@@ -74,7 +78,7 @@ function NewSale() {
                 }}
               />
               <Box mt={4} />
-              <Typography variant='h6'>Sale Description</Typography>
+              <Typography variant='h6'>Product Description</Typography>
               <Box mt={4} />
               <Box height={18} />
               <Input
@@ -84,6 +88,7 @@ function NewSale() {
                 name='sellPrice'
                 onChange={formik.handleChange}
                 value={formik.values.sellPrice}
+                startAdornment={<Typography>$</Typography>}
                 // error={formik.errors.sellPrice}
               />
               <Box height={18} />
@@ -106,7 +111,60 @@ function NewSale() {
                 }}
               >
                 <Button type='submit' size='large' variant='contained'>
-                  Create
+                  Add To Cart
+                </Button>
+              </Box>
+            </form>
+          ) : (
+            <Typography>Loading...</Typography>
+          )}
+        </Grid>
+        <Grid item xs={4}>
+          {products.length > 0 ? (
+            <form id='form' onSubmit={formik.handleSubmit}>
+              <Box mt={4} />
+              <Typography variant='h6'>Sale Description</Typography>
+              <Box mt={4} />
+              <Box height={18} />
+              <Input
+                autoComplete='off'
+                placeholder='Name'
+                type='text'
+                name='name'
+                onChange={formik.handleChange}
+                value={formik.values.name}
+                // error={formik.errors.sellPrice}
+              />
+              <Box height={18} />
+              <Input
+                autoComplete='off'
+                placeholder='Address'
+                type='text'
+                name='address'
+                onChange={formik.handleChange}
+                value={formik.values.address}
+                // error={formik.errors.quantity}
+              />
+              <Box height={18} />
+              <Input
+                autoComplete='off'
+                placeholder='Number'
+                type='text'
+                name='number'
+                onChange={formik.handleChange}
+                value={formik.values.number}
+                // error={formik.errors.quantity}
+              />
+              <Box mt={4} />
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                }}
+              >
+                <Button type='submit' size='large' variant='contained'>
+                  Create Order
                 </Button>
               </Box>
             </form>
